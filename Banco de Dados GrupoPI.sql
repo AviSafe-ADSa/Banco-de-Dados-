@@ -229,3 +229,20 @@ SELECT * FROM Pagamento;
 
 
 ALTER TABLE Pagamento MODIFY COLUMN formaPagamento VARCHAR (60);
+
+SELECT *, 
+      CASE
+    WHEN formaPagamento = 'pix' THEN 'Gerar QR CODE'
+      WHEN formaPagamento = 'credito' THEN 'Solicitar aprovação'
+    WHEN formaPagamento = 'boleto' THEN 'Gerar PDF'
+      WHEN formaPagamento = 'transferencia' THEN 'Gerar comprovante'
+    END AS 'Status do Pagamento'
+    FROM pagamento;
+    
+SELECT concat('Em ', dtPagamento, ' foi realizado o pagamento em ', formaPagamento) AS 'Forma de Pagamento' FROM Pagamento;
+
+SHOW TABLES;
+    
+TRUNCATE TABLE pagamento;
+    
+DROP TABLE pagamento;
