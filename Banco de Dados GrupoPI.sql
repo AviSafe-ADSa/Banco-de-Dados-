@@ -101,6 +101,53 @@ CONSTRAINT chkStatus
 
 
 
+INSERT INTO Usuario (nomeEmpresa, email, telefone, cnpj, statusUsuario) VALUES
+('Secgalinhas', 'secgalinhas@gmail.com', '5511982348743','11103662000103', 'ativo'),
+('ChickenCO', 'chickenco@gmail.com', '5511903152624', '34876905000141', 'ativo'),
+('Granja Viana', 'granjaviana@gmail.com', '5511903987500', '21664309000156', 'ativo'),
+('Granja Faria', 'granjafaria@gmail.com', '5555901376601', '98863274000109', 'ativo'),
+('Granja Limas', 'granjalima@gmail.com', '5551925467439', '78619119000134', 'desativado');
+
+SELECT * FROM Usuario;
+
+SELECT nomeEmpresa, cnpj FROM Usuario;
+
+UPDATE Usuario SET email = 'granjarespfaria@gmail.com'
+	WHERE idUsuario = 4;
+
+ALTER TABLE Usuario RENAME COLUMN email TO emailResp;
+
+DESCRIBE Usuario;
+
+ALTER TABLE Usuario MODIFY COLUMN emailResp VARCHAR (50);
+
+ALTER TABLE Usuario ADD COLUMN sigla CHAR(2);
+
+ UPDATE Usuario SET sigla = 'sp'
+	WHERE idUsuario IN (1, 2, 3);
+    
+SHOW TABLES;
+
+ALTER TABLE Usuario DROP COLUMN sigla;
+
+SELECT CONCAT ('A empresa ' , nomeEmpresa, ' com o CNPJ ', cnpj, ', está ' , statusUsuario, ' em nosso sistema') FROM Usuario;
+
+SELECT * ,
+	CASE 
+	WHEN statusUsuario = 'desativado' THEN 'Usuário sem acesso ao sistema'
+    END AS 'Status do Usuario'
+    FROM Usuario;
+
+
+SELECT * FROM Usuario 
+	where nomeEmpresa like 'C%';
+    
+    
+    
+    
+    
+    
+
 
 CREATE TABLE Plano (
 idPlano INT PRIMARY KEY AUTO_INCREMENT,
