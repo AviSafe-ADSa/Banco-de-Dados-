@@ -143,28 +143,6 @@ SELECT * FROM Usuario
 	where nomeEmpresa like 'C%';
     
     
-    
-    
-    
-    
-
-
-CREATE TABLE Plano (
-idPlano INT PRIMARY KEY AUTO_INCREMENT,
-statusPlano VARCHAR(15),
-CONSTRAINT chkStatusPlano
-	CHECK (statusPlano IN ('pago', 'pendente', 'atrasado')),
-    
-tipoPlano VARCHAR(15),
-CONSTRAINT chkTipoPlano
-	CHECK (tipoPlano IN ('mensal', 'anual')),
-    
-dtAssinatura DATE,
-valorPlano DECIMAL (7,2)
-);
-
-
-
 
 
 
@@ -180,7 +158,41 @@ CONSTRAINT chkStatusGalpao
 );
 
 
+INSERT INTO Galpoes (nomeGalpao, qtdSensores, tamanho, responsavel, statusGalpao) VALUES 
+      ('Galpão Leste', 5, 350.5, 'Maria Santos', 'ativo'),
+      ('Galpão Oeste', 3, 280.2, 'Gabriela Oliveira', 'ativo'),
+      ('Galpão Norte', 6, 420.8, 'João Pereira', 'desativado'),
+      ('Galpão Sul', 4, 310.3, 'Ana Silva', 'ativo'),
+      ('Galpão Central', 7, 500.0, 'Fernanda Santos', 'ativo');
 
+SELECT * FROM Galpoes;
+
+SELECT nomeGalpao, statusGalpao FROM Galpoes; 
+
+SELECT nomeGalpao, responsavel, statusGalpao FROM Galpoes
+      WHERE statusGalpao = 'ativo';
+    
+INSERT INTO Galpoes VALUES 
+      (DEFAULT, 'Galpão Novo Horizonte', 8, 560.8, 'Juliana Ribeiro', 'desativado');
+
+DELETE FROM Galpoes 
+      WHERE idGalpao = 4;
+
+UPDATE Galpoes SET responsavel = 'Matheus Silva'
+      WHERE idGalpao = 6;
+    
+SELECT CONCAT(nomeGalpao, ' ', qtdSensores) AS 'Quantidade de Sensores no Galpão'
+      FROM Galpoes;
+    
+SELECT nomeGalpao, qtdSensores, responsavel,
+      CASE 
+    WHEN statusGalpao = 'ativo' THEN 'Galpão em Funcionamento'
+    ELSE 'Galpão Desativado'
+    END AS 'Status'
+    FROM Galpoes;
+    
+SELECT nomeGalpao, qtdSensores, responsavel FROM Galpoes 
+      WHERE responsavel like 'J%';
 
 
 
