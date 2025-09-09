@@ -132,7 +132,7 @@ INSERT INTO Pagamento VALUES
 CREATE TABLE Alerta(
 idAlerta INT PRIMARY KEY AUTO_INCREMENT,
 dtAlerta DATETIME DEFAULT CURRENT_TIMESTAMP,
-motivoAlerta VARCHAR(20) NOT NULL 
+motivoAlerta VARCHAR(20) NOT NULL,
 CONSTRAINT chkMotivo CHECK (motivoAlerta IN('Temperatura baixa' , 'Temperatura alta', 'Umidade baixa' , 'Umidade alta', 'Outros')),
 statusResolvido TINYINT DEFAULT 0, -- alerta criado com o status resolvido 0 'false'  
 idGalpao INT, -- EM um futuro proximo isso vai virar uma chave estrangeira
@@ -153,7 +153,7 @@ INSERT INTO Alerta (motivoAlerta , idGalpao , idUsuario) VALUES
 
     
 
-SELECT * FROM sensor;
+SELECT * FROM Sensor;
 
 SELECT dtLeitura AS 'DataDaLeitura',
 	leituraTemp AS 'LeituraDaTemperaturaºC',
