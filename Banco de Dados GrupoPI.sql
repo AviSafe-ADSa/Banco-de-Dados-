@@ -123,28 +123,6 @@ INSERT INTO Pagamento VALUES
 (DEFAULT, 'transferencia', '2025-06-02 17:28:00');
 
     
-    
--- ------------- --
--- Tabela Alerta --
--- ------------- --
-
-
-CREATE TABLE Alerta(
-idAlerta INT PRIMARY KEY AUTO_INCREMENT,
-dtAlerta DATETIME DEFAULT CURRENT_TIMESTAMP,
-motivoAlerta VARCHAR(20) NOT NULL,
-CONSTRAINT chkMotivo CHECK (motivoAlerta IN('Temperatura baixa' , 'Temperatura alta', 'Umidade baixa' , 'Umidade alta', 'Outros')),
-statusResolvido TINYINT DEFAULT 0, -- alerta criado com o status resolvido 0 'false'  
-idGalpao INT, -- EM um futuro proximo isso vai virar uma chave estrangeira
-idUsuario INT -- EM um futuro proximo isso vai virar uma chave estrangeira
-);
-
-INSERT INTO Alerta (motivoAlerta , idGalpao , idUsuario) VALUES
-('Temperatura baixa', 1 , 1),
-('Temperatura alta', 3 , 1),
-('Umidade alta', 2 , 1),
-('Umidade baixa', 3 , 1);
-
 
 
 -- ------------------------------------------
@@ -355,13 +333,4 @@ SHOW TABLES;
     
 TRUNCATE TABLE pagamento;
     
-DROP TABLE pagamento;
 
-SELECT * FROM Alerta;
-
-UPDATE Alerta SET statusResolvido = 1 WHERE idAlerta = 1; 
-
-SELECT * FROM Alerta WHERE statusResolvido = 1;
-
-ALTER TABLE Alerta MODIFY COLUMN motivoAlerta VARCHAR(17);
-DESCRIBE Alerta; 
